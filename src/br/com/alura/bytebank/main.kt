@@ -1,16 +1,38 @@
 package br.com.alura.bytebank
 
 fun main() {
-    val typeFN: () -> Unit = ::helloWorld
+    TestTypeFunctionReference()
+    TestTypeFunctionClass()
 
-    println(typeFN)
-    println(typeFN())
+    val testLambda: () -> Unit = {
+        println("Testing lambda expression on var type function")
+    }
 
+    println(testLambda)
+    println(testLambda())
+
+    val testAnonymoutsFunction:() -> Unit = fun(){
+        println("Testing anonymous function on var type functio")
+    }
+
+    println(testAnonymoutsFunction)
+    println(testAnonymoutsFunction())
+
+
+}
+
+fun TestTypeFunctionClass() {
     val typeClassTest: () -> Unit = TestClass()
 
     println(typeClassTest)
     println(typeClassTest())
+}
 
+fun TestTypeFunctionReference() {
+    val typeFN: () -> Unit = ::helloWorld
+
+    println(typeFN)
+    println(typeFN())
 }
 
 fun helloWorld(){
