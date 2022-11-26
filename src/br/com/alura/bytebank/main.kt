@@ -1,9 +1,36 @@
 package br.com.alura.bytebank
 
-fun main() {
-    TestTypeFunctionReference()
-    TestTypeFunctionClass()
+import br.com.alura.bytebank.teste.testaContasDiferentes
+import java.math.BigDecimal
 
+fun main() {
+//    TestTypeFunctionReference()
+//    TestTypeFunctionClass()
+
+//    exerciseOne()
+
+    val typeFN: () -> Unit = {
+        println("Lambda")
+    }
+
+    val typeFn2: () -> BigDecimal = fun (): BigDecimal {
+        return BigDecimal.ZERO
+    }
+
+    println(typeFn2())
+
+    println(typeFN)
+    println(typeFN())
+
+
+
+}
+
+fun hw (){
+    println("Hello World")
+}
+
+fun exerciseOne() {
     val testLambda: () -> Unit = {
         println("Testing lambda expression on var type function")
     }
@@ -11,14 +38,12 @@ fun main() {
     println(testLambda)
     println(testLambda())
 
-    val testAnonymoutsFunction:() -> Unit = fun(){
+    val testAnonymoutsFunction: () -> Unit = fun() {
         println("Testing anonymous function on var type functio")
     }
 
     println(testAnonymoutsFunction)
     println(testAnonymoutsFunction())
-
-
 }
 
 fun TestTypeFunctionClass() {
