@@ -6,7 +6,6 @@ import java.math.BigDecimal
 fun main() {
 //    TestTypeFunctionReference()
 //    TestTypeFunctionClass()
-
 //    exerciseOne()
 
     val typeFN: () -> Unit = {
