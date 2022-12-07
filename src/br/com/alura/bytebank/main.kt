@@ -1,71 +1,25 @@
 package br.com.alura.bytebank
-
-import br.com.alura.bytebank.teste.testaContasDiferentes
-import java.math.BigDecimal
-
 fun main() {
-//    TestTypeFunctionReference()
-//    TestTypeFunctionClass()
-//    exerciseOne()
 
-    val typeFN: () -> Unit = {
-        println("Lambda")
+    val nameWithGreet = "Caike Evangelista Bispo".let {arg ->
+        println("Hello $arg")
     }
 
-    val typeFn2: () -> BigDecimal = fun (): BigDecimal {
-        return BigDecimal.ZERO
+    println(nameWithGreet)
+
+    val qualquer = Qualquer()
+
+    qualquer.let {qualquerCoisa ->
+        println("Say any to $qualquerCoisa")
+
     }
 
-    println(typeFn2())
-
-    println(typeFN)
-    println(typeFN())
-
+    println(qualquer.nome)
 
 
 }
 
-fun hw (){
-    println("Hello World")
+class Qualquer(){
+     public var nome: String = "Qualquer nome"
 }
 
-fun exerciseOne() {
-    val testLambda: () -> Unit = {
-        println("Testing lambda expression on var type function")
-    }
-
-    println(testLambda)
-    println(testLambda())
-
-    val testAnonymoutsFunction: () -> Unit = fun() {
-        println("Testing anonymous function on var type functio")
-    }
-
-    println(testAnonymoutsFunction)
-    println(testAnonymoutsFunction())
-}
-
-fun TestTypeFunctionClass() {
-    val typeClassTest: () -> Unit = TestClass()
-
-    println(typeClassTest)
-    println(typeClassTest())
-}
-
-fun TestTypeFunctionReference() {
-    val typeFN: () -> Unit = ::helloWorld
-
-    println(typeFN)
-    println(typeFN())
-}
-
-fun helloWorld(){
-    println("Hello world from type functions")
-}
-
-class TestClass : () -> Unit {
-    override fun invoke() {
-        println("Testing type functions with classes")
-    }
-
-}
