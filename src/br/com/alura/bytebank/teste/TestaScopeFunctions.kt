@@ -1,6 +1,5 @@
 package br.com.alura.bytebank.teste
 
-import br.com.alura.bytebank.Qualquer
 import br.com.alura.bytebank.modelo.Endereco
 
 fun TestaScopeFunctions() {
@@ -50,4 +49,8 @@ fun TestaScopeFunctions() {
     with(end) {
         println("Rua: " + this.logradouro + ".")
     }.also { println("Execução realizada com sucesso") }.apply(::println)
+}
+
+class Qualquer(){
+    public var nome: String = "Qualquer nome"
 }
