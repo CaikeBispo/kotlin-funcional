@@ -48,6 +48,20 @@ fun main() {
         println("Realiza pagamento")
     })
 
+    val end = Endereco("Caratinga", 123, "Jd Anita").apply {
+        "$logradouro $numero $bairro".toUpperCase()
+    }.apply (::println) // a impressão não é maiuscula pois o contexto retornado é o do objeto e não do lambda result (let)
+
+    // Para ver mais detalhes a respeito de scope functions -> https://kotlinlang.org/docs/scope-functions.html#function-selection
+    // Para saber qual usar --> https://github.com/alura-cursos/kotlin-funcional/blob/resources/funcoes-de-escopo-kotlin.pdf
+
+    end.run{ println("Preparando configurações") }
+
+    with(end){
+        println("Rua: " + this.logradouro + ".")
+    }.also { println("Execução realizada com sucesso") }.apply (::println)
+
+
 }
 
 fun soma(a:Int, b:Int, resultado: (Int) -> Unit){
