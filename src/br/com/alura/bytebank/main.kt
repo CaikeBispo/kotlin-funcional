@@ -8,6 +8,7 @@ fun main() {
 
     TestaScopeFunctions()
 
+    TestaHOF()
 
 }
 
@@ -44,16 +45,6 @@ fun TestaScopeFunctions() {
     ).filter { endereco -> endereco.complemento.isEmpty() }
         .let(::println)
 
-    soma(1, 2, (::println))
-
-    val autenticavel = object : Autenticavel {
-        val senha = 1234
-        override fun autentica(senha: Int) = this.senha == senha
-    }
-
-    SistemaInterno().entra(autenticavel, 12345, autenticado = {
-        println("Realiza pagamento")
-    })
 
     val end = Endereco("Caratinga", 123, "Jd Anita").apply {
         "$logradouro $numero $bairro".toUpperCase()
@@ -68,6 +59,19 @@ fun TestaScopeFunctions() {
     with(end) {
         println("Rua: " + this.logradouro + ".")
     }.also { println("Execução realizada com sucesso") }.apply(::println)
+}
+
+fun TestaHOF() {
+    soma(1, 2, (::println))
+
+    val autenticavel = object : Autenticavel {
+        val senha = 1234
+        override fun autentica(senha: Int) = this.senha == senha
+    }
+
+    SistemaInterno().entra(autenticavel, 12345, autenticado = {
+        println("Realiza pagamento")
+    })
 }
 
 fun soma(a:Int, b:Int, resultado: (Int) -> Unit){
