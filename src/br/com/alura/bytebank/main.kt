@@ -6,7 +6,13 @@ import br.com.alura.bytebank.modelo.SistemaInterno
 
 fun main() {
 
-    val nameWithGreet = "Caike Evangelista Bispo".let {arg ->
+    TestaScopeFunctions()
+
+
+}
+
+fun TestaScopeFunctions() {
+    val nameWithGreet = "Caike Evangelista Bispo".let { arg ->
         println("Hello $arg")
     }
 
@@ -14,7 +20,7 @@ fun main() {
 
     val qualquer = Qualquer()
 
-    qualquer.let {qualquerCoisa ->
+    qualquer.let { qualquerCoisa ->
         println("Say any to $qualquerCoisa")
 
     }
@@ -31,15 +37,16 @@ fun main() {
         "Rua: ${endereco.logradouro}, Bairro: ${endereco.bairro}, Cidade: ${endereco.cidade}".toUpperCase()
     }.let(::println)
 
-    listOf<Endereco>(Endereco(logradouro = "João goular",complemento = "Apartamento 901"),
+    listOf<Endereco>(
+        Endereco(logradouro = "João goular", complemento = "Apartamento 901"),
         Endereco(logradouro = "João Pekny", complemento = "Apartamento da praia"),
         Endereco(logradouro = "Gastão Vidigal", complemento = "")
-    ).filter { endereco ->  endereco.complemento.isEmpty()}
-    .let (::println)
+    ).filter { endereco -> endereco.complemento.isEmpty() }
+        .let(::println)
 
     soma(1, 2, (::println))
 
-    val autenticavel = object : Autenticavel{
+    val autenticavel = object : Autenticavel {
         val senha = 1234
         override fun autentica(senha: Int) = this.senha == senha
     }
@@ -50,18 +57,17 @@ fun main() {
 
     val end = Endereco("Caratinga", 123, "Jd Anita").apply {
         "$logradouro $numero $bairro".toUpperCase()
-    }.apply (::println) // a impressão não é maiuscula pois o contexto retornado é o do objeto e não do lambda result (let)
+    }
+        .apply(::println) // a impressão não é maiuscula pois o contexto retornado é o do objeto e não do lambda result (let)
 
     // Para ver mais detalhes a respeito de scope functions -> https://kotlinlang.org/docs/scope-functions.html#function-selection
     // Para saber qual usar --> https://github.com/alura-cursos/kotlin-funcional/blob/resources/funcoes-de-escopo-kotlin.pdf
 
-    end.run{ println("Preparando configurações") }
+    end.run { println("Preparando configurações") }
 
-    with(end){
+    with(end) {
         println("Rua: " + this.logradouro + ".")
-    }.also { println("Execução realizada com sucesso") }.apply (::println)
-
-
+    }.also { println("Execução realizada com sucesso") }.apply(::println)
 }
 
 fun soma(a:Int, b:Int, resultado: (Int) -> Unit){
