@@ -10,8 +10,13 @@ fun TestaHOF (){
         override fun autentica(senha: Int) = this.senha == senha
     }
 
-        SistemaInterno().entra(autenticavel, 12345, autenticado = {
+    SistemaInterno().entra(autenticavel, 12345, autenticado = {
         println("Realiza pagamento")
+    })
+
+    SistemaInterno().entraReceiter(autenticavel, 12345, autenticado = {
+        //Com o receiver passsei a obter acesso ao contexto do SistemaInterno dentro do testaHOF
+        this.logout()
     })
 }
 
